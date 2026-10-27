@@ -1,0 +1,60 @@
+# compspill settings.  Every key is optional; unknown keys are an error (typo guard).
+# Detector names can be written loosely: "APC", "APC-A", "Alexa Fluor 488" or "AF488".
+
+# Restrict / reorder the detectors to compensate (default: $SPILLOVER order of the files)
+# detectors = ["FITC-A", "PE-A", "PE-Cy7-A", "APC-A", "BV421-A"]
+
+[markers]            # detector -> marker: labels in the report, FlowJo infixes in the .mtx
+"FITC-A" = "CD45"
+"PE-A" = "CD3"
+"PE-Cy7-A" = "CD4"
+"APC-A" = "CD8"
+"BV421-A" = "CD19"
+
+# [match]            # control file -> detector, when the file name does not say it
+# "tube 7.fcs" = "APC-A"
+
+[particles."APC-A"]  # keep one particle population of a control (see the bimodal warning)
+fsc_threshold = 30000
+keep = "above"       # "below" or "above" the threshold
+apply_to = "positives"   # or "both" (also the negatives)
+
+[[override]]         # replace one estimated value; the reason goes into the report
+source = "FITC"
+detector = "BV421"
+value = 0.0
+reason = "Example: the stained samples show no FITC signal in BV421 (see sample check); the dim cell control picked up autofluorescence."
+
+[gating]
+negative_percentile = 99.5   # of the unstained, in the primary detector: neg/pos split
+scatter_k = 3.5              # scatter gate width (robust SDs of log FSC / log SSC)
+top_trim_percent = 0.5       # drop the brightest 0.5 % of positives (aggregates)
+saturation_fraction = 0.99   # off-scale: >= 99 % of $PnR in any detector
+# fsc_channel = "FSC-A"
+# ssc_channel = "SSC-A"
+
+[iteration]
+tolerance = 1e-4
+max_iterations = 100
+
+[warnings]
+min_positives = 200
+dim_ratio = 10.0             # warn if median positive < 10 x median negative
+saturated_percent = 2.0
+bimodal_check = true
+negative_spill = -0.01
+
+[plots]
+enabled = true
+cofactor = 150.0             # arcsinh cofactor for the plots
+dpi = 60
+
+[samples]
+max_events = 50000           # random subsample per sample file
+top_percent = 2.0            # "bright in i" = top 2 % of the samples ...
+negative_percentile = 99.0   # ... and above the 99th percentile of the negatives
+min_spill = 0.01             # list every |S| >= 1 % (plus all of a warned control's row)
+abs_tolerance = 0.02         # flag when samples and matrix differ by > 2 % ...
+rel_tolerance = 0.3          # ... and by > 30 % of the matrix value
+min_bright_events = 50
+# viability_detector = "APC-Cy7-A"   # drop dead cells (positive in this detector)

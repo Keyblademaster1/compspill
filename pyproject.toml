@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "compspill"
+version = "0.1.0"
+description = "AutoSpill-style flow cytometry compensation (spillover) matrices from single-stain controls, with an HTML report and a check against stained samples"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "Carin Lau" }]
+keywords = ["flow cytometry", "compensation", "spillover", "autospill", "FCS"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Topic :: Scientific/Engineering :: Bio-Informatics",
+    "Intended Audience :: Science/Research",
+]
+dependencies = ["numpy>=1.23", "flowio>=1.3", "matplotlib>=3.6"]
+
+[project.optional-dependencies]
+test = ["pytest>=7"]
+
+[project.scripts]
+compspill = "compspill.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/Keyblademaster1/compspill"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

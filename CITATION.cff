@@ -1,0 +1,48 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below, and cite AutoSpill (Roca et al. 2021) for the method."
+title: "compspill: AutoSpill-style compensation matrices from single-stain controls"
+version: 0.1.0
+date-released: 2026-10-27
+license: MIT
+authors:
+  - given-names: Carin
+    family-names: "Lau"
+    orcid: "https://orcid.org/0009-0006-4939-6482"
+repository-code: "https://github.com/Keyblademaster1/compspill"
+keywords:
+  - flow cytometry
+  - compensation
+  - spillover
+references:
+  - type: article
+    title: "AutoSpill is a principled framework that simplifies the analysis of multichromatic flow cytometry data"
+    authors:
+      - family-names: Roca
+        given-names: Carlos P.
+      - family-names: Burton
+        given-names: Oliver T.
+      - family-names: Gergelits
+        given-names: Václav
+      - family-names: Prezzemolo
+        given-names: Teresa
+      - family-names: Whyte
+        given-names: Carly E.
+      - family-names: Halpert
+        given-names: Richard
+      - family-names: Kreft
+        given-names: Łukasz
+      - family-names: Collier
+        given-names: James
+      - family-names: Botzki
+        given-names: Alexander
+      - family-names: Spidlen
+        given-names: Josef
+      - family-names: Humblet-Baron
+        given-names: Stéphanie
+      - family-names: Liston
+        given-names: Adrian
+    journal: Nature Communications
+    volume: 12
+    start: 2890
+    year: 2021
+    doi: 10.1038/s41467-021-23126-8

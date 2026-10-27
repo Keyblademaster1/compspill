@@ -1,0 +1,25 @@
+# data: never commit cytometry files (may contain patient data)
+*.fcs
+*.FCS
+*.lmd
+*.wsp
+example_data/
+example_output/
+output*/
+out/
+comp_out/
+
+# python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+
+# OS / editors
+.DS_Store
+.idea/
+.vscode/
